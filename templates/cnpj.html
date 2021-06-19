@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+
+h3 {color:#5af708;}
+strong {color:#730cf7;}
+h1 {color:#29fb00;}
+
+body{
+    background-image: url('http://i.stack.imgur.com/kx8MT.gif');
+    background-size: cover;
+    height: 100vh;
+    padding:0;
+    margin:0;
+}
+
+
+
+input[type="submit"] {background-color:#1877F2; border:none;color:white;width:250px;height:30px;margin: 5px;border-radius: 5px;}
+input[type="text"] {width:250px;height:30px;margin: 5px;;}
+input[type="password"] {width:250px;height:30px;margin: 5px;}
+strong {color:#399ef7;font-family;Arial}
+
+</style>
+
+<meta name="viewport"content="width=device-width,initial-scale=1">
+
+<title>CONSULTA CNPJ</title>
+
+</head>
+
+<body>
+	<center>
+		<h1>
+			╔═╗╔═╦╗╔═╗─╔╗
+			║╔╝║║║║║╬║─║║
+			║╚╗║║║║║╔╝╔╣║
+			╚═╝╚╩═╝╚╝─╚═╝
+		</h1>
+
+	</center>
+
+	<center>
+
+	<form action="{{url_for('index')}}" method="post">
+                <input type="text" name = "cnpj" placeholder="Digite um cnpj" maxlength="20"><br>
+
+        <br>
+        <input type="submit" value="consulta">
+
+        </form>
+
+
+
+
+
+	{% if req|length <=  2 %}
+
+		<h3>digite os dados</h3>
+
+	
+	{% else %}
+	
+		<h3> <strong>Atividade Principal: </strong> {{ req['atividade_principal'][0]['text'] }} </h3>
+		<h3> <strong>Atividade Principal codigo: </strong> {{ req['atividade_principal'][0]['code'] }} </h3>
+		<h3> <strong>data situação: </strong> {{ req['data_situacao'] }} </h3>
+		<h3> <strong>tipo: </strong> {{ req['tipo'] }} </h3>
+		<h3> <strong>nome: </strong> {{ req['nome'] }} </h3>
+		<h3> <strong>uf: </strong> {{ req['uf'] }} </h3>
+		<h3> <strong>telefone: </strong> {{ req['telefone'] }} </h3>
+		<h3> <strong>nome: </strong> {{ req['nome'] }} </h3>
+
+
+		{% for chave, valor in req['atividades_secundarias'][0].items() %}
+			<h3>{{chave}}:</h3> <strong>{{ valor }} </strong> 
+		{% endfor %}
+
+
+		<h3> <strong>qsa: </strong> {{ req['qsa'][0]['qual'] }} </h3>
+		<h3> <strong>nome: </strong> {{ req['qsa'][0]['nome'] }} </h3>
+		<h3> <strong>situação: </strong> {{ req['situacao'] }} </h3>
+		<h3> <strong>bairro: </strong> {{ req['bairro'] }} </h3>
+		<h3> <strong>logradouro: </strong> {{ req['logradouro'] }} </h3>
+		<h3> <strong>municipio: </strong> {{ req['municipio'] }} </h3>
+		<h3> <strong>porte: </strong> {{ req.porte }} </h3>
+		<h3> <strong>abertura: </strong> {{ req['abertura'] }} </h3>
+		<h3> <strong>natureza juridica: </strong> {{ req['natureza_juridica'] }} </h3>
+		<h3> <strong>fantasia: </strong> {{ req['fantasia'] }} </h3>
+		<h3> <strong>ultima atualização: </strong> {{ req['ultima_atualizacao']  }} </h3>
+		<h3> <strong>cnpj: </strong> {{ req['cnpj'] }} </h3>
+		<h3> <strong>complemento: </strong> {{ req['complemento'] }} </h3>
+		<h3> <strong>email: </strong> {{ req['email'] }} </h3>
+		<h3> <strong>capital social: </strong> {{ req['capital_social'] }} </h3>	
+
+	{% endif %}
+	</center>
+	
+
+
+
+</body>
+
+</html>
